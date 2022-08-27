@@ -1,6 +1,6 @@
 const Form = ({ setCity, getWether }) => {
   return (
-    <form>
+    <form onSubmit={getWether}>
       <input
         type="text"
         name="city"
@@ -8,9 +8,7 @@ const Form = ({ setCity, getWether }) => {
         onChange={(e) => setCity(e.target.value)}
       />
 
-      <button type="submit" onClick={getWether}>
-        Get Weather
-      </button>
+      <button type="submit">Get Weather</button>
     </form>
   );
 };

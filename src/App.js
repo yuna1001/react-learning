@@ -20,6 +20,7 @@ export default function App() {
 
   const getWether = (e) => {
     e.preventDefault();
+
     axios
       .get(
         `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}&aqi=no`
@@ -32,7 +33,10 @@ export default function App() {
           conditionText: res.data.current.condition.text,
           icon: res.data.current.condition.icon
         });
-      });
+
+        setCity("");
+      })
+      .catch((err) => alert("エラーが発生しました。"));
   };
 
   return (

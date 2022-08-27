@@ -2,7 +2,7 @@ const Results = ({ results }) => {
   const { cityName, country, tempreature, conditionText, icon } = results;
 
   return (
-    <div>
+    <>
       {cityName && <div className="results-city">{cityName}</div>}
       {country && <div className="results-country">{country}</div>}
       {tempreature && (
@@ -17,7 +17,7 @@ const Results = ({ results }) => {
           <span>{conditionText}</span>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
