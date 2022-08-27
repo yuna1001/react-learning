@@ -3,12 +3,14 @@ import { useState } from "react";
 import Title from "./components/Title";
 import Form from "./components/Form";
 import Results from "./components/Results";
+import Loading from "./components/Loading";
 import "./styles.css";
 
 /** https://www.weatherapi.com */
 const api_key = "";
 
 export default function App() {
+  const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState({
     country: "",
@@ -20,6 +22,7 @@ export default function App() {
 
   const getWether = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     axios
       .get(
@@ -35,6 +38,7 @@ export default function App() {
         });
 
         setCity("");
+        setLoading(false);
       })
       .catch((err) => alert("エラーが発生しました。"));
   };
@@ -43,8 +47,8 @@ export default function App() {
     <div className="wrapper">
       <div className="container">
         <Title />
-        <Form setCity={setCity} getWether={getWether} />
-        <Results results={results} />
+        <Form setCity={setCity} getWether={getWether} city={city} />
+        {loading ? <Loading /> : <Results results={results} />}
       </div>
     </div>
   );
